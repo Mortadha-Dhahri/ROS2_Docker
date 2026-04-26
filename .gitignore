@@ -1,0 +1,30 @@
+# ROS 2 build artifacts
+build/
+install/
+log/
+ament_cmake_python_build/
+ament_cmake_index/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker (optional but recommended)
+*.tar
+*.log
+
+# Cyclone DDS runtime files (if generated)
+CycloneDDS*.xml.bak
+
+# Colcon
+*.swp
+*.swo

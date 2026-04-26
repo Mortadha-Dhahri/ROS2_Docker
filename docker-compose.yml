@@ -1,0 +1,30 @@
+services:
+  publisher:
+    build: ./publisher
+    container_name: ros2_publisher
+    environment:
+      - ROS_DOMAIN_ID=20
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - CYCLONEDDS_URI=/config/cyclone_dds.xml
+    volumes:
+      - ./cyclone_dds.xml:/config/cyclone_dds.xml:ro
+    networks:
+      - ros2_network
+
+  subscriber:
+    build: ./subscriber
+    container_name: ros2_subscriber
+    environment:
+      - ROS_DOMAIN_ID=20
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - CYCLONEDDS_URI=/config/cyclone_dds.xml
+    volumes:
+      - ./cyclone_dds.xml:/config/cyclone_dds.xml:ro
+    networks:
+      - ros2_network
+    depends_on:
+      - publisher
+
+networks:
+  ros2_network:
+    driver: bridge
