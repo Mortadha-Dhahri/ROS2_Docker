@@ -1,4 +1,4 @@
-services:
+﻿services:
   publisher:
     build: ./publisher
     container_name: ros2_publisher
@@ -24,6 +24,37 @@ services:
       - ros2_network
     depends_on:
       - publisher
+
+  recorder:
+    build: ./recorder
+    container_name: ros2_recorder
+    environment:
+      - ROS_DOMAIN_ID=20
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - CYCLONEDDS_URI=/config/cyclone_dds.xml
+    volumes:
+      - ./cyclone_dds.xml:/config/cyclone_dds.xml:ro
+      - ./bags:/bags
+    networks:
+      - ros2_network
+    depends_on:
+      - publisher
+
+  converter:
+    build: ./recorder
+    container_name: ros2_converter
+    profiles:
+      - convert
+    environment:
+      - ROS_DOMAIN_ID=20
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - BAG_SESSION
+    volumes:
+      - ./bags:/bags
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["/app/convert_to_mcap.sh /bags/$BAG_SESSION"]
+    networks:
+      - ros2_network
 
 networks:
   ros2_network:
