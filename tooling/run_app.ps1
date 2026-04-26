@@ -15,7 +15,7 @@ Start-Process powershell -ArgumentList @(
     "`$Host.UI.RawUI.WindowTitle='ROS2_Build'; cd '$projectPath'; docker compose build"
 )
 
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 8
 
 # -------------------------
 # 2. Start containers
@@ -26,7 +26,7 @@ Start-Process powershell -ArgumentList @(
     "`$Host.UI.RawUI.WindowTitle='ROS2_Up'; cd '$projectPath'; docker compose up"
 )
 
-Start-Sleep -Seconds 8
+Start-Sleep -Seconds 6
 
 # -------------------------
 # 3. Docker PS

@@ -25,6 +25,10 @@ Thumbs.db
 # Cyclone DDS runtime files (if generated)
 CycloneDDS*.xml.bak
 
+#ROS bags
+bags/
+
+
 # Colcon
 *.swp
 *.swo

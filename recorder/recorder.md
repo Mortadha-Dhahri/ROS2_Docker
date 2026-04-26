@@ -93,10 +93,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY record.sh .
-RUN chmod +x record.sh
+COPY record_bag.sh .
+RUN chmod +x record_bag.sh
 
-CMD ["./record.sh"]
+CMD ["./record_bag.sh"]
 ```
 
 ---

@@ -11,4 +11,4 @@ TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 BAG_PATH="/bags/session_${TIMESTAMP}"
 
 echo "[recorder] Starting rosbag recording to ${BAG_PATH}"
-ros2 bag record -a -o "${BAG_PATH}"
+ros2 bag record -a -o "${BAG_PATH}" --storage mcap 
