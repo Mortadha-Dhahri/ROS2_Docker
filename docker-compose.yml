@@ -25,6 +25,21 @@ services:
     depends_on:
       - publisher
 
+    recorder:
+      build: ./recorder
+      container_name: ros2_recorder
+      environment:
+        - ROS_DOMAIN_ID=0
+        - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+        - CYCLONEDDS_URI=/config/cyclone_dds.xml
+      volumes:
+        - ./cyclone_dds.xml:/config/cyclone_dds.xml:ro
+        - ./bags:/bags                          # bag files land here on your Windows host
+      networks:
+        - ros2_network
+      depends_on:
+        - publisher
+
 networks:
   ros2_network:
     driver: bridge

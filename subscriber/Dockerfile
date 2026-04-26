@@ -1,4 +1,4 @@
-FROM ros:humble
+FROM ros:humble-ros-core
 
 RUN apt-get update && apt-get install -y \
     ros-humble-rmw-cyclonedds-cpp \
